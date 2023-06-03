@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({

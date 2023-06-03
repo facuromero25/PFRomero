@@ -1,50 +1,41 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
-
-
-
-import { Inscripciones } from '../inscripciones.component';
+import { Observable, concatMap, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { enviroment } from 'src/environments/environments';
+import { CreateInscripcionData, InscripcionWithAll, Inscripcion } from '../models';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class InscripcionesServicesService {
+  constructor(private httpClient: HttpClient) {}
 
-
-
-
-  private inscripciones$ = new BehaviorSubject<Inscripciones[]>([
-    {
-      id: 1,
-      nombre: 'Juan sosa',
-      curso: 'angular',
-      fecha_registro: new Date()
-    },
-    {
-      id: 2,
-      nombre: 'camila Lopez',
-      curso: 'Javascript',
-      fecha_registro: new Date()
-    },
-    {
-      id: 3,
-      nombre: 'sol santillan',
-      curso: 'javascript',
-      fecha_registro: new Date()
-    },
-  ])
-
-  constructor() { }
-
-  obtenerInscripciones(): Observable<Inscripciones[]> {
-    return this.inscripciones$.asObservable();
+  createInscripcion(data: CreateInscripcionData): Observable<InscripcionWithAll> {
+    return this.httpClient
+      .post<Inscripcion>(`${enviroment.apiBaseUrl}/inscriptions`, data)
+      .pipe(
+        concatMap((createResponse) =>
+          this.getInscripcionWithAllById(createResponse.id)
+        )
+      );
   }
 
-  obtenerInscripcionesPorId(id: number): Observable<Inscripciones | undefined> {
-    return this.inscripciones$.asObservable()
-      .pipe(
-        map((inscripciones) => inscripciones.find((a) => a.id === id))
-      )
+  getInscripcionWithAllById(id: number): Observable<InscripcionWithAll> {
+    return this.httpClient.get<InscripcionWithAll>(
+      `${enviroment.apiBaseUrl}/inscriptions/${id}?_expand=student&_expand=subject&_expand=course`
+    )
+  }
+
+  getAllInscripciones(): Observable<InscripcionWithAll[]> {
+    return this.httpClient.get<InscripcionWithAll[]>(
+      `${enviroment.apiBaseUrl}/inscriptions?_expand=course&_expand=student&_expand=subject`
+    );
+  }
+
+  deleteInscripcionById(id: number): Observable<unknown> {
+    return this.httpClient.delete(
+      `${enviroment.apiBaseUrl}/inscriptions/${id}`
+    );
   }
 }

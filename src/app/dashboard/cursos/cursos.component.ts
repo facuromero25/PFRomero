@@ -81,8 +81,8 @@ export class CursosComponent implements OnInit, OnDestroy {
     this.dataSource.filter = inputValue?.trim()?.toLowerCase();
   }
 
-  irAlDetalle(cursoId: number): void {
-    this.router.navigate([cursoId], {
+  irAlDetalle(courseId: number): void {
+    this.router.navigate([courseId], {
       relativeTo: this.activatedRoute,
     });
   }

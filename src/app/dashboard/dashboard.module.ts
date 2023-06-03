@@ -7,7 +7,8 @@ import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
-import { InscripcionesModule } from './inscripciones/inscripciones.module';
+import { AdminGuard } from '../auth/guards/admin.guard';
+
 
 @NgModule({
   declarations: [
@@ -29,11 +30,13 @@ import { InscripcionesModule } from './inscripciones/inscripciones.module';
       },
       {
         path: 'cursos',
+        canActivate: [AdminGuard],
         loadChildren: () => import('./cursos/cursos.module').then((m) => m.CursosModule),
       },
       {
         path: 'inscripciones',
         loadChildren: () => import('./inscripciones/inscripciones.module').then((m) => m.InscripcionesModule),
+
       }
     ])
   ],

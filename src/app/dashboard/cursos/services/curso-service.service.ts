@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap, mergeMap, map, take } from 'rxjs';
 import { enviroment } from 'src/environments/environments';
-import { Curso, CrearCursoPayload } from '../models';
+import { Curso, CrearCursoPayload, CursoWithSubject } from '../models';
 
 
 @Injectable({
@@ -23,17 +23,23 @@ export class CursoServiceService {
   }
 
   obtenerCursos(): Observable<Curso[]> {
-    return this.httpClient.get<Curso[]>(`${enviroment.apiBaseUrl}/cursos`)
+    return this.httpClient.get<Curso[]>(`${enviroment.apiBaseUrl}/courses`)
       .pipe(
         tap((cursos) => this.cursos$.next(cursos)),
         mergeMap(() => this.cursos$.asObservable())
       );
   }
 
-  getCursoById(cursoId: number): Observable<Curso | undefined> {
+  obtenerCursosWithSubject(): Observable<CursoWithSubject[]> {
+    return this.httpClient.get<CursoWithSubject[]>(
+      `${enviroment.apiBaseUrl}/courses?_expand=subject`
+    );
+  }
+
+  getCursoById(courseId: number): Observable<Curso | undefined> {
     return this.cursos$.asObservable()
       .pipe(
-        map((cursos) => cursos.find((c) => c.id === cursoId))
+        map((cursos) => cursos.find((c) => c.id === courseId))
       )
   }
 
@@ -59,7 +65,7 @@ export class CursoServiceService {
     return this.cursos$.asObservable();
   }
 
-  editarCurso(cursoId: number, actualizacion: Partial<Curso>): Observable<Curso[]> {
+  editarCurso(courseId: number, actualizacion: Partial<Curso>): Observable<Curso[]> {
     this.cursos$
       .pipe(
         take(1),
@@ -70,14 +76,14 @@ export class CursoServiceService {
   }
 
 
-  eliminarCurso(cursoId: number): Observable<Curso[]> {
+  eliminarCurso(courseId: number): Observable<Curso[]> {
     this.cursos$
     .pipe(
       take(1)
     )
     .subscribe({
       next: (cursos) => {
-        const cursosActualizados = cursos.filter((curso) => curso.id !== cursoId)
+        const cursosActualizados = cursos.filter((curso) => curso.id !== courseId)
         this.cursos$.next(cursosActualizados);
       },
       complete: () => {},

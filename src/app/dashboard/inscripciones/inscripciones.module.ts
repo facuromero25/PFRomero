@@ -10,19 +10,23 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { PipesModule } from 'src/app/shared/pipes/pipes.module';
-import { AbmInscripcionesComponent } from './abm-inscripciones/abm-inscripciones.component';
-import { DetalleInscripcionesComponent } from './detalle-inscripciones/detalle-inscripciones.component';
+
 import { MatOptionModule, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DirectivesModule } from 'src/app/shared/directives/directives.module';
 import { MatSelectModule } from '@angular/material/select';
+import { InscripcionDialogComponent } from './components/inscripcion-dialog/inscripcion-dialog.component';
+import { StoreModule } from '@ngrx/store';
+import { inscripcionesFeature } from './store/inscripciones.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { InscripcionesEffects } from './store/inscripciones.effects';
+import { InscripcionesRoutingModule } from './inscripciones-routing.module';
 
 
 @NgModule({
   declarations: [
     InscripcionesComponent,
-    AbmInscripcionesComponent,
-    DetalleInscripcionesComponent
+    InscripcionDialogComponent
   ],
   imports: [
     DirectivesModule,
@@ -39,12 +43,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatOptionModule,
     MatNativeDateModule,
     MatSelectModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: InscripcionesComponent
-      }
-    ])
+    InscripcionesRoutingModule,
+    StoreModule.forFeature(inscripcionesFeature),
+    EffectsModule.forFeature([InscripcionesEffects])
 
   ]
 })

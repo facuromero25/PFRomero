@@ -1,25 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InscripcionesComponent } from './inscripciones.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
-
+const routes: Routes = [
+  {
+    path: '',
+    component: InscripcionesComponent
+  }
+];
 
 @NgModule({
-  declarations: [
-
-  ],
+  declarations: [],
   imports: [
     CommonModule,
-    RouterModule.forChild([
-      {
-        path: '',
-        component: InscripcionesComponent
-      }
-    ])
+    RouterModule.forChild(routes)
   ],
   exports: [
-
+    RouterModule,
   ]
 })
-export class InscripcionesModule { }
+export class InscripcionesRoutingModule { }

@@ -13,13 +13,13 @@
 
 <table mat-table [dataSource]="dataSource">
 
-  <!-- Id Column -->
+
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
     <td mat-cell *matCellDef="let curso"> {{curso.id}} </td>
   </ng-container>
 
-  <!-- Nombre Column -->
+
   <ng-container matColumnDef="nombre">
     <th mat-header-cell *matHeaderCellDef>Nombre completo</th>
     <td mat-cell *matCellDef="let curso">
@@ -27,19 +27,19 @@
     </td>
   </ng-container>
 
-  <!-- Fecha de Registro Column -->
+
   <ng-container matColumnDef="fecha_inicio">
     <th mat-header-cell *matHeaderCellDef>Fecha de inicio</th>
     <td mat-cell *matCellDef="let curso"> {{curso.fecha_inicio | date: 'dd/MM/YYYY'  }} </td>
   </ng-container>
 
-  <!-- Fecha de Registro Column -->
+
   <ng-container matColumnDef="fecha_fin">
     <th mat-header-cell *matHeaderCellDef>Fecha de fin</th>
     <td mat-cell *matCellDef="let curso"> {{curso.fecha_fin | date: 'dd/MM/YYYY'  }} </td>
   </ng-container>
 
-  <!-- Detalle Column -->
+
   <ng-container matColumnDef="detalle">
     <th mat-header-cell *matHeaderCellDef>Detalle</th>
     <td mat-cell *matCellDef="let curso">
@@ -49,7 +49,7 @@
     </td>
   </ng-container>
 
-  <!-- Eliminar Column -->
+
   <ng-container matColumnDef="eliminar">
     <th mat-header-cell *matHeaderCellDef>Eliminar</th>
     <td mat-cell *matCellDef="let curso">
@@ -59,7 +59,6 @@
     </td>
   </ng-container>
 
-  <!-- Editar Column -->
   <ng-container matColumnDef="editar">
     <th mat-header-cell *matHeaderCellDef>Editar</th>
     <td mat-cell *matCellDef="let curso">

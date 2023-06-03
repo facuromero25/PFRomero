@@ -1,65 +1,85 @@
 {
-  "usuarios": [
+  "users": [
     {
       "id": 1,
-      "nombre": "facu",
+      "nombre": "Facundo",
       "apellido": "romero",
       "email": "facu@mail.com",
       "password": "123456",
-      "token": "hjsdfJHFDSAFMsaDsan12sdanjjadashj3FDBEWH",
+      "token": "hjsdfJHFDSAFMsaDsan12sdanjjadashj3fOJIOUB",
       "role": "admin"
     },
     {
-      "nombre": "santi",
-      "apellido": "perez",
-      "email": "santi@mail.com",
+      "nombre": "sandra",
+      "apellido": "Perez",
+      "email": "juan@email.com",
       "password": "123456",
-      "token": "nmdsgfjhuMDKSAFJASDK327SJDKANjsadnsah",
+      "token": "nmdsgfjhuMDKSAFJASDK327SJFWDKANjsafdsaah",
       "role": "user",
       "id": 4
     }
   ],
-  "cursos": [
+  "courses": [
     {
       "id": 1,
-      "nombre": "angular",
+      "subjectId": 1,
       "fecha_fin": "2023-04-27T01:27:59.631Z",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
     },
     {
       "id": 2,
-      "nombre": "Javascript",
+      "subjectId": 2,
       "fecha_fin": "2023-04-27T01:27:59.631Z",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
     },
     {
       "id": 3,
-      "nombre": "Desarrollo Web",
+      "subjectId": 2,
       "fecha_fin": "2023-04-27T01:27:59.631Z",
       "fecha_inicio": "2023-04-27T01:27:59.631Z"
     }
   ],
-  "inscripciones": [
+  "subjects": [
     {
       "id": 1,
-      "alumno": "Romero Facundo",
-      "curso": "Javascript",
-      "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "nombre": "Angular",
+      "description": "Curso de Angular con duración de 2 meses."
     },
     {
       "id": 2,
-      "alumno": "Lopez camila",
-      "curso": "Desarrollo Web",
-      "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "nombre": "Desarrollo Web"
     },
     {
       "id": 3,
-      "alumno": "Molina Lucia",
-      "curso": "Desarrollo Web",
-      "fecha_fin": "2023-04-27T01:27:59.631Z",
-      "fecha_inicio": "2023-04-27T01:27:59.631Z"
+      "nombre": "Desarrollo Javascript"
+    }
+  ],
+  "inscriptions": [
+    {
+      "id": 2,
+      "subjectId": 2,
+      "studentId": 1,
+      "courseId": 2
+    },
+    {
+      "subjectId": 1,
+      "studentId": 3,
+      "courseId": 1,
+      "id": 6
+    }
+  ],
+  "students": [
+    {
+      "id": 3,
+      "nombre": "cami",
+      "apellido": "lopez",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
+    },
+    {
+      "id": 1,
+      "nombre": "franco",
+      "apellido": "gutierrez",
+      "fecha_registro": "2023-04-27T01:27:59.631Z"
     }
   ]
 }
